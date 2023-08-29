@@ -3,9 +3,21 @@ package br.senai.sp.poo_introduction.Model;
 import java.util.Scanner;
 
 public class Register {
+
+    boolean flag = true;
+
+
+    /** Instance Output*/
+    Output output = new Output();
+
+    Teacher teacher = new Teacher();
+    Student objStudent = new  Student();
+
     public void RegisterSdudent(){
+
+
         Scanner teclado = new Scanner(System.in);
-        Student objStudent = new  Student();
+
         System.out.println("------------------------------------");
         System.out.print("Hello Student , whats your Name: ");
         objStudent.name = teclado.next();
@@ -21,20 +33,17 @@ public class Register {
         objStudent.grade2 = teclado.nextFloat();
         System.out.println("-------------------------------------");
 
-        System.out.println("\nStudent information:");
-        System.out.println("Student´s Name is: " + objStudent.name);
-        System.out.println("Student´s Age is: " + objStudent.age);
-        System.out.println("Student´s Grade 1 is: " + objStudent.grade1);
-        System.out.println("Student´s Grade 2 is: " + objStudent.grade2);
-        System.out.println("Student´s Frequency is: " + objStudent.frequency);
-        System.out.println("===========================================================");
+        if (flag){
+            output.PrintStudent(objStudent);
+        }
+
 
     }
     public void RegisterTeacher(){
         Scanner teclado = new Scanner(System.in);
 //        Instacia objeto Teacher
 
-        Teacher teacher = new Teacher();
+
         System.out.println("------------------------------------");
         System.out.print("Hello teacher , whats your Name: ");
         teacher.name = teclado.nextLine();
@@ -48,25 +57,19 @@ public class Register {
         teacher.phoneNumber = teclado.nextLong();
         System.out.println("-------------------------------------");
 
-        /** Print informations */
-        System.out.println("\nTeacher information:");
-        System.out.println("Teacher´s Name is: " + teacher.name);
-        System.out.println("Teacher´s Age is: " + teacher.age);
-        System.out.println("Teacher´s E-mail is: " + teacher.email);
-        System.out.println("Teacher´s Phone Number is: " + teacher.phoneNumber);
-        System.out.println("Teacher´s Specialist is: " + teacher.specialist);
-        System.out.println("===========================================================");
-
-
-
-
+        if (flag){
+            output.PrintTeacher(teacher);
+        }
 
 
     }
 
     public void RegisterBoth(){
+        flag = false;
+        RegisterTeacher();
+        RegisterSdudent();
+        output.PrintTeacher(teacher);
+        output.PrintStudent(objStudent);
 
-       RegisterTeacher();
-       RegisterSdudent();
     }
 }
